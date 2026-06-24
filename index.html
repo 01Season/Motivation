@@ -344,7 +344,7 @@
 
   <div class="top-banner">
     <div class="emoji-row">🌸 ✨ 💪 ✨ 🌸</div>
-    <h1>You've Got This,<br>My Best Friend! 💖<Br> Ms. Aroma 🌸</h1>
+    <h1>You've Got This,<br>My Best Friend! 💖</h1>
     <div class="sub">A message just for you</div>
     <p class="main-message">
       "You will soon clear everything.<br>
@@ -506,6 +506,74 @@
 </div>
 
 <div class="flower-pop-layer" id="flowerLayer"></div>
+
+<!-- Hidden YouTube embed -->
+<iframe id="yt-iframe"
+  src="https://www.youtube.com/embed/S8PNXgLhkT0?autoplay=1&loop=1&playlist=S8PNXgLhkT0&controls=0&mute=0&enablejsapi=1"
+  allow="autoplay; encrypted-media"
+  style="position:fixed;width:1px;height:1px;bottom:0;right:0;opacity:0;pointer-events:none;border:none;"
+  frameborder="0">
+</iframe>
+
+<!-- Music control button -->
+<div id="music-bar" style="
+  position: fixed;
+  bottom: 22px;
+  right: 22px;
+  z-index: 1000;
+  background: rgba(255,255,255,0.90);
+  border: 1.5px solid rgba(255,182,193,0.7);
+  border-radius: 50px;
+  padding: 10px 22px;
+  font-size: 14px;
+  font-family: 'Lato', Arial, sans-serif;
+  color: #c2185b;
+  box-shadow: 0 4px 16px rgba(255,105,180,0.2);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+">
+  <span style="font-size:18px">🎵</span>
+  <span id="music-label" style="font-weight:600;">Click to Play Music</span>
+  <button onclick="playMusic()" id="play-btn" style="
+    background:#e91e63;color:white;border:none;border-radius:50px;
+    padding:6px 16px;font-size:13px;cursor:pointer;font-family:inherit;
+    transition:background 0.2s;">▶ Play</button>
+  <button onclick="pauseMusic()" id="pause-btn" style="
+    background:transparent;color:#e91e63;border:1.5px solid #e91e63;border-radius:50px;
+    padding:6px 16px;font-size:13px;cursor:pointer;font-family:inherit;display:none;
+    transition:background 0.2s;">⏸ Pause</button>
+</div>
+
+<script>
+/* ─── YOUTUBE AUDIO CONTROL ─── */
+var iframe = document.getElementById('yt-iframe');
+
+function playMusic() {
+  // reload iframe with autoplay to force browser to play
+  iframe.src = "https://www.youtube.com/embed/S8PNXgLhkT0?autoplay=1&loop=1&playlist=S8PNXgLhkT0&controls=0&mute=0&start=0";
+  document.getElementById('play-btn').style.display = 'none';
+  document.getElementById('pause-btn').style.display = 'inline-block';
+  document.getElementById('music-label').textContent = 'Now Playing ♪';
+}
+
+function pauseMusic() {
+  iframe.src = "";
+  document.getElementById('play-btn').style.display = 'inline-block';
+  document.getElementById('pause-btn').style.display = 'none';
+  document.getElementById('music-label').textContent = 'Music Paused';
+}
+
+// Try autoplay on load
+window.addEventListener('load', function() {
+  setTimeout(function() {
+    iframe.src = "https://www.youtube.com/embed/S8PNXgLhkT0?autoplay=1&loop=1&playlist=S8PNXgLhkT0&controls=0&mute=0";
+    document.getElementById('play-btn').style.display = 'none';
+    document.getElementById('pause-btn').style.display = 'inline-block';
+    document.getElementById('music-label').textContent = 'Now Playing ♪';
+  }, 1000);
+});
+</script>
 
 <script>
 /* ─── PETALS ─── */
